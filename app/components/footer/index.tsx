@@ -105,6 +105,7 @@ export const Footer = () => {
                   ) => {
                     return (
                       <a
+                        key={href}
                         target={target}
                         href={href}
                         aria-label={ariaLabel}

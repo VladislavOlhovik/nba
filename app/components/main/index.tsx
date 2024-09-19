@@ -38,7 +38,7 @@ export const Main = () => {
               <h3 className="w-[215px]">
                 Our team specializes in creating dynamic,
                 scalable, and user-centric applications
-                tailored to meet our clients' unique
+                tailored to meet our client&apos;s unique
                 business needs
               </h3>
             </div>
