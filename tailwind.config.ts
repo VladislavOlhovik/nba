@@ -99,12 +99,26 @@ const config: Config = {
           '0.875rem',
           { lineHeight: '1.25', fontWeight: '300' },
         ], // 14px
+        body6: [
+          '1rem',
+          { lineHeight: '1.5', fontWeight: '300' },
+        ], // 16px
+        body7: [
+          '0.625rem',
+          { lineHeight: '1.25', fontWeight: '300' },
+        ], // 10px
         button: [
           '1.25rem',
           { lineHeight: '1.25', fontWeight: '600' },
         ], // 20px
       },
       colors: {
+        dark: {
+          100: '#E2E2E2',
+          200: '#989797',
+          300: '#767676',
+          400: '#454545',
+        },
         purple: {
           100: '#D79EFA',
           200: '#AE67DA',

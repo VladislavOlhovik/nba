@@ -56,13 +56,13 @@ export const Careers = () => {
   return (
     <section id="careers" className="pt-32">
       <Container>
-        <h2 className="text-h2 mb-[40px] flex flex-col">
+        <h2 className="text-h5 md:text-h3 xl:text-h2 mb-[40px] flex flex-col">
           <span className="text-start">
             Join Us on Our Journey
           </span>
           <span className="text-end">At NBA Soft</span>
         </h2>
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
           {jobCards.map(item => {
             return <Card key={item.title} {...item} />;
           })}

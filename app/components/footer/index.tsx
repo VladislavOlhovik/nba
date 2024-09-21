@@ -75,7 +75,10 @@ export const Footer = () => {
         <div className="grid mt-6 grid-cols-[1fr_2fr]">
           <div>
             <div className="absolute top-[-140px] rotate-[-164deg] left-0 w-[375px] h-[610px] rounded-full bg-[#5956E6] blur-[72px]"></div>
-            <NavLinks className="flex-col gap-4 z-[5] relative" />
+            <NavLinks
+              screen="desktop"
+              className="flex flex-col gap-4 z-[5] relative"
+            />
           </div>
           <div className="relative">
             <div className="absolute top-[-238px] rotate-[-157deg] rounded-full right-0 w-[535px] h-[610px] bg-[#8D6AF4] blur-[150px]"></div>

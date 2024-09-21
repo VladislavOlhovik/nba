@@ -22,3 +22,28 @@ export const DownArrow = ({
     />
   </svg>
 );
+
+type SmArrowType = {
+  className: string;
+};
+
+export const SmRightArrow = ({
+  className,
+  ...props
+}: SmArrowType) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={11}
+    height={19}
+    fill="none"
+    {...props}
+    className={className}
+  >
+    <path
+      className={className}
+      strokeLinecap="round"
+      strokeWidth={1.5}
+      d="m1 17.5 9-7.99M1 1.5l9 7.99"
+    />
+  </svg>
+);

@@ -93,3 +93,44 @@ export const LinkButton = ({
     </a>
   );
 };
+
+type HamburgerButtonProps = {
+  onClick: () => void;
+  isOpen: boolean;
+};
+
+export const HamburgerButton = ({
+  onClick,
+  isOpen,
+}: HamburgerButtonProps) => {
+  return (
+    <button
+      onClick={onClick}
+      className="flex flex-col justify-center items-center h-6"
+      aria-label="The button for opening/closing the drop-down menu"
+    >
+      <span
+        className={`block transition-all duration-300 ease-out 
+                    h-0.5 w-6 rounded-sm ${
+                      isOpen
+                        ? 'rotate-45 translate-y-1 bg-black'
+                        : `-translate-y-1 bg-white`
+                    }`}
+      ></span>
+      <span
+        className={`bg-white block transition-all duration-300 ease-out 
+                    h-0.5 w-6 rounded-sm my-0.5 ${
+                      isOpen ? 'opacity-0' : 'opacity-100'
+                    }`}
+      ></span>
+      <span
+        className={`block transition-all duration-300 ease-out 
+                    h-0.5 w-6 rounded-sm ${
+                      isOpen
+                        ? '-rotate-45 -translate-y-1 bg-black'
+                        : `translate-y-1 bg-white`
+                    }`}
+      ></span>
+    </button>
+  );
+};

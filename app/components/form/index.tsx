@@ -83,13 +83,15 @@ export const Form = () => {
     <section id="contacts">
       <Container className="min-h-screen flex flex-col justify-center">
         <div className="w-full mb-[40px]">
-          <h2 className="text-h2">Get In Touch</h2>
+          <h2 className="text-h5 md:text-h2">
+            Get In Touch
+          </h2>
         </div>
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="max-w-[764px] relative"
+          className="md:max-w-[764px] relative"
         >
-          <div className="grid grid-cols-2 gap-6 mb-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
             <Input
               name="fullName"
               autoComplete="name"

@@ -1,4 +1,5 @@
 'use client';
+
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 
@@ -197,6 +198,7 @@ export const ServicesGrid = () => {
           yPosition >=
           containerRefInfo.width - circleWidth
         ) {
+          let pos = xPosition;
           xPosition =
             containerRefInfo.startPosY -
             (scrollY -
@@ -226,7 +228,7 @@ export const ServicesGrid = () => {
     <div ref={containerRef} className="relative">
       <div
         ref={circleRef}
-        className={`absolute top-0 left-0`}
+        className={`hidden md:block absolute top-0 left-0`}
       >
         <div className="rounded-full w-[200px] h-[160px] bg-[#195FE1] blur-[40px]"></div>
         <div className="absolute top-0 left-0 rounded-full w-[120px] h-[120px] bg-[#AE67DA] blur-[40px]"></div>
@@ -238,32 +240,32 @@ export const ServicesGrid = () => {
               <div
                 className={`absolute ${i === 0 ? 'top-[125px]' : 'top-[105px]'} w-full h-[1px] bg-white`}
               ></div>
-              <div className="absolute left-[340px] h-full w-[1px] bg-white"></div>
-              <div className="grid grid-cols-[1fr_2fr] gap-8">
+              <div className="hidden md:block absolute md:left-[240px] xl:left-[340px] h-full w-[1px] bg-white"></div>
+              <div className="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-8">
                 {i % 2 !== 0 ? (
                   <h3 className="text-h5 text-end text-purple-300">
                     {category}
                   </h3>
                 ) : (
-                  <div className="flex justify-end items-end">
+                  <div className="hidden md:flex justify-end items-end">
                     {icon}
                   </div>
                 )}
                 {i % 2 === 0 ? (
                   <h3
-                    className={`flex items-end w-[400px] text-h5 text-start text-purple-300 ${i === 0 ? 'pt-16' : ''}`}
+                    className={`flex items-end md:w-[400px] text-h5 text-start text-purple-300 ${i === 0 ? 'pt-16' : ''}`}
                   >
                     {category}
                   </h3>
                 ) : (
-                  <div className="flex items-end">
+                  <div className="hidden md:flex items-end">
                     {icon}
                   </div>
                 )}
-                <p className="text-end text-body3">
+                <p className="hidden md:block text-end text-body3">
                   {overview}
                 </p>
-                <div className="grid grid-cols-2 gap-8 pb-20">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pb-20">
                   {technologies.map(
                     ({ description, name }) => {
                       return (

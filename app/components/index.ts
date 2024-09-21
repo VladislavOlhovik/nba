@@ -3,6 +3,7 @@ export { Logo } from './logo';
 export {
   ScrollButton,
   StyledButton,
+  HamburgerButton,
   LinkButton,
 } from './buttons';
 export { Header } from './header';

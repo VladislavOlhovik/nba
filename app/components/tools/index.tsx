@@ -38,27 +38,27 @@ export const Tools = () => {
   return (
     <section id="tools" className="pt-32">
       <Container>
-        <h2 className="text-h3 mb-[70px]">
+        <h2 className="text-body1 md:text-h5 xl:text-h3 mb-[38px] md:mb-[62px] xl:mb-[70px]">
           Our experts build the future
           <br /> with these powerful tools
         </h2>
         <div className="flex justify-between">
-          <div className="max-w-[578px]">
+          <div className="md:max-w-[360px] xl:max-w-[578px]">
             {toolsDescriptions.map(item => {
               return (
                 <ToolItem key={item.category} item={item} />
               );
             })}
           </div>
-          <div className="max-w-[324px]">
-            <p className="text-body2 mb-8">
+          <div className="hidden md:block md:max-w-[224px] xl:max-w-[324px]">
+            <p className="md:text-body6 xl:text-body2 mb-8">
               Let our specialists identify the most
               effective solution for you
             </p>
             <ScrollButton
               scrollId="contacts"
               title="Order a consultation"
-              className="bg-purple-300 px-[52px] py-[14px]"
+              className="bg-purple-300 md:px-[25px] md:py-[12px] xl:px-[52px] xl:py-[14px]"
             />
           </div>
         </div>

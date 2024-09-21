@@ -24,7 +24,9 @@ export const ToolItem = ({
         hover:text-purple-100 active:text-purple-200 group cursor-pointer
         ${expand ? 'text-purple-200' : ''}`}
       >
-        <h3 className="text-h4">{category}</h3>
+        <h3 className="text-body1 md:text-h4 xl:text-h4">
+          {category}
+        </h3>
         <div
           className={`transition-all duration-500 ease-in-out 
         ${expand ? 'rotate-x-180' : ''}`}
@@ -43,7 +45,7 @@ export const ToolItem = ({
             : 'max-h-0'
         }`}
       >
-        <p className="py-5 text-body2 border-b-[1px] border-white">
+        <p className="py-5 text-body4 md:text-body3 xl:text-body2 border-b-[1px] border-white">
           {description}
         </p>
       </div>

@@ -1,5 +1,6 @@
 'use client';
 
+import { SmRightArrow } from '@/components/icons';
 import { useEffect, useState } from 'react';
 
 const navLinks = [
@@ -31,9 +32,15 @@ const navLinks = [
 
 interface NavLinksProps {
   className?: string;
+  screen: 'mobile' | 'desktop';
+  handleClick?: () => void;
 }
 
-export const NavLinks = ({ className }: NavLinksProps) => {
+export const NavLinks = ({
+  className,
+  screen,
+  handleClick,
+}: NavLinksProps) => {
   const [activeSection, setActiveSection] = useState('');
 
   useEffect(() => {
@@ -67,9 +74,8 @@ export const NavLinks = ({ className }: NavLinksProps) => {
       section.scrollIntoView({ behavior: 'smooth' });
     }
   };
-
-  return (
-    <ul className={`flex text-body4 ${className}`}>
+  return screen === 'desktop' ? (
+    <ul className={`text-body4 ${className}`}>
       {navLinks.map(({ name, id }, i) => {
         return (
           <li
@@ -79,6 +85,33 @@ export const NavLinks = ({ className }: NavLinksProps) => {
             onClick={() => scrollToSection(id)}
           >
             {name}
+          </li>
+        );
+      })}
+    </ul>
+  ) : (
+    <ul className="flex flex-col gap-6 mb-6">
+      {navLinks.map(({ id, name }) => {
+        let active = activeSection === id;
+        return (
+          <li
+            key={id}
+            className={`flex items-center justify-between text-body2 font-medium 
+            px-4 py-2 rounded-[5px] text-dark-400
+            ${active ? 'bg-blue-100 text-blue-300' : ''}`}
+            onClick={() => {
+              scrollToSection(id);
+              handleClick && handleClick();
+            }}
+          >
+            {name}{' '}
+            <SmRightArrow
+              className={
+                active
+                  ? 'stroke-blue-300'
+                  : 'stroke-dark-200'
+              }
+            />
           </li>
         );
       })}

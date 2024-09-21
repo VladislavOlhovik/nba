@@ -1,6 +1,10 @@
 'use client';
 
-export const Logo = () => {
+type LogoProps = {
+  className?: string;
+};
+
+export const Logo = ({ className }: LogoProps) => {
   return (
     <h1
       onClick={() => {
@@ -9,7 +13,7 @@ export const Logo = () => {
           section.scrollIntoView({ behavior: 'smooth' });
         }
       }}
-      className="text-body1 relative z-[5] cursor-pointer"
+      className={`text-body1 relative z-[5] cursor-pointer ${className}`}
     >
       NBA soft
     </h1>

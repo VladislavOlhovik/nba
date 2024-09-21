@@ -32,7 +32,7 @@ const backgroundColors = [
 interface ValueCardProps {
   title: string;
   description: string;
-  width: number;
+  width?: number;
   bg: string;
 }
 
@@ -44,19 +44,26 @@ const ValueCard = ({
 }: ValueCardProps) => (
   <div
     style={{ width: `${width}%` }}
-    className={`py-[42px] px-[85px] rounded-r-full ${bg}`}
+    className={`py-4 px-[10px] md:py-[42px] md:px-[60px] xl:px-[85px] rounded-r-full ${bg}`}
   >
-    <h3 className="text-h5 mb-4">{title}</h3>
-    <p className="text-body2">{description}</p>
+    <h3 className="text-body1 md:text-h5 mb-4">{title}</h3>
+    <p className="text-body5 md:text-body2">
+      {description}
+    </p>
   </div>
 );
 
 export const Values = () => {
   return (
-    <section id="values" className="min-h-screen pt-32">
+    <section
+      id="values"
+      className="xl:min-h-screen xl:pt-32"
+    >
       <Container>
-        <h2 className="text-h3 mb-[48px]">Our values</h2>
-        <div className="flex flex-col gap-8">
+        <h2 className="text-h5 md:text-h3 mb-[48px]">
+          Our values
+        </h2>
+        <div className="flex flex-col gap-3 md:gap-6 xl:gap-8">
           {companyValues.map(
             ({ description, title }, i) => (
               <ValueCard

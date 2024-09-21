@@ -7,5 +7,5 @@ export { WebDev } from './web-dev';
 export { MobileDev } from './mob-dev';
 export { QAIcon } from './QA';
 export { ChainDev } from './chain-dev';
-export { DownArrow } from './arrows';
+export { DownArrow, SmRightArrow } from './arrows';
 export { Clip } from './clip';
