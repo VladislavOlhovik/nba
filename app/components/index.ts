@@ -2,7 +2,7 @@ export { Container } from './container';
 export { Logo } from './logo';
 export {
   ScrollButton,
-  SubmitButton,
+  StyledButton,
   LinkButton,
 } from './buttons';
 export { Header } from './header';

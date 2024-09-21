@@ -12,7 +12,7 @@ export const formSchema = z.object({
     .string()
     .regex(
       /^\+?[1-9]\d{9}$/,
-      'The phone number you entered seems incorrect.'
+      'The phone number is incorrect.'
     ),
   company: z
     .string()
@@ -26,12 +26,15 @@ export const formSchema = z.object({
     .min(1, 'Message is required')
     .max(200, 'Message must be less than 200 characters.'),
   file: z
-    .instanceof(File)
+    .any()
+    .refine(file => {
+      if (file instanceof File) {
+        return file.size <= 5000000;
+      }
+      return true;
+    }, 'File size should be less than 5MB')
     .optional()
-    .refine(
-      file => !file || file.size <= 5000000,
-      'File size should be less than 5MB'
-    ),
+    .nullable(),
 });
 
 export type FormSchemaType = z.infer<typeof formSchema>;

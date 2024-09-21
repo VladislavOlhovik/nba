@@ -1,6 +1,6 @@
-import { FormSchemaType } from '@/lib/schemas';
-
 import { UseFormRegister } from 'react-hook-form';
+
+import { FormSchemaType } from '@/lib/schemas';
 
 interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -26,11 +26,11 @@ export const Input = ({
         {...props}
         {...register(name)}
       />
-      {/* {error && (
-        <p className="absolute text-error text-[#C92F2F] mt-[2px]">
+      {error && (
+        <p className="absolute text-error text-[#C92F2F]">
           {error}
         </p>
-      )} */}
+      )}
     </div>
   );
 };

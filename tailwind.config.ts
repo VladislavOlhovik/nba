@@ -8,6 +8,47 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      animation: {
+        dot1: 'dot1 1s infinite',
+        dot2: 'dot2 1s infinite',
+        dot3: 'dot3 1s infinite',
+        expand: 'expand 0.5s ease-out',
+        collapse: 'collapse 0.5s ease-out',
+      },
+      keyframes: {
+        dot1: {
+          '0%, 20%, 60%, 100%': { transform: 'scale(1)' },
+          '20%': { transform: 'scale(1.5)' },
+        },
+        dot2: {
+          '0%, 20%, 60%, 100%': { transform: 'scale(1)' },
+          '40%': { transform: 'scale(1.5)' },
+        },
+        dot3: {
+          '0%, 20%, 60%, 100%': { transform: 'scale(1)' },
+          '60%': { transform: 'scale(1.5)' },
+        },
+        expand: {
+          '0%': {
+            transform: 'scale(0)',
+            opacity: '0',
+          },
+          '100%': {
+            transform: 'scale(1)',
+            opacity: '1',
+          },
+        },
+        collapse: {
+          '0%': {
+            transform: 'scale(1)',
+            opacity: '1',
+          },
+          '100%': {
+            transform: 'scale(0)',
+            opacity: '0',
+          },
+        },
+      },
       backgroundImage: {
         'gradient-radial':
           'radial-gradient(var(--tw-gradient-stops))',

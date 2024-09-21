@@ -4,14 +4,17 @@ import { useCallback, useRef, useState } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 
-import { Container, SubmitButton } from '@/components';
+import { Container, StyledButton } from '@/components';
 import { Clip } from '@/components/icons';
 import { formSchema, FormSchemaType } from '@/lib/schemas';
+import { sendEmail } from '@/lib/actions';
+import { FormDataType } from '@/lib/definitions';
 
 import { Input } from './input';
+import { FormMessage } from './form-message';
 
 export const Form = () => {
-  const submitButtonRef = useRef<HTMLDivElement>(null);
+  const submitButtonRef = useRef<HTMLButtonElement>(null);
   const [showMessage, setShowMessage] = useState(false);
   const [buttonPosition, setButtonPosition] = useState({
     x: 0,
@@ -24,6 +27,8 @@ export const Form = () => {
   });
 
   const {
+    resetField,
+    watch,
     register,
     handleSubmit,
     formState: { errors },
@@ -33,7 +38,6 @@ export const Form = () => {
   });
 
   const onSubmit = async (data: FormSchemaType) => {
-    console.log(data);
     setPending(true);
     if (submitButtonRef.current) {
       const rect =
@@ -44,13 +48,30 @@ export const Form = () => {
       });
     }
 
-    // const result = await sendEmail(data);
-    // if (result?.isSent) {
-    //   setResponse(result);
-    //   reset();
-    // } else {
-    //   setResponse(result);
-    // }
+    const formData = new FormData();
+    (
+      Object.keys(data) as Array<keyof FormDataType>
+    ).forEach(key => {
+      if (key === 'file') {
+        if (
+          data[key] &&
+          data[key]!.length > 0 &&
+          data[key]![0] instanceof File
+        ) {
+          formData.append('file', data[key]![0]);
+        }
+      } else {
+        formData.append(key, data[key] as string);
+      }
+    });
+
+    const result = await sendEmail(formData);
+    if (result?.isSent) {
+      setResponse(result);
+      reset();
+    } else {
+      setResponse(result);
+    }
     setPending(false);
     setShowMessage(true);
   };
@@ -58,7 +79,6 @@ export const Form = () => {
   const handleCloseMessage = useCallback(() => {
     setShowMessage(false);
   }, []);
-
   return (
     <section id="contacts">
       <Container className="min-h-screen flex flex-col justify-center">
@@ -67,15 +87,16 @@ export const Form = () => {
         </div>
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="max-w-[664px]"
+          className="max-w-[764px] relative"
         >
-          <div className="grid grid-cols-2 gap-4 mb-4">
+          <div className="grid grid-cols-2 gap-6 mb-6">
             <Input
               name="fullName"
               autoComplete="name"
               type="text"
               placeholder="Full name"
               register={register}
+              error={errors.fullName?.message}
             />
             <Input
               name="email"
@@ -83,13 +104,15 @@ export const Form = () => {
               autoComplete="email"
               placeholder="Email"
               register={register}
+              error={errors.email?.message}
             />
             <Input
               name="phone"
-              type="text"
+              type="number"
               autoComplete="tel"
               placeholder="Phone number"
               register={register}
+              error={errors.phone?.message}
             />
             <Input
               name="company"
@@ -97,6 +120,7 @@ export const Form = () => {
               autoComplete="company"
               placeholder="Company"
               register={register}
+              error={errors.company?.message}
             />
           </div>
           <div className="relative">
@@ -117,15 +141,37 @@ export const Form = () => {
               type="text"
               placeholder="Message"
               register={register}
+              error={errors.message?.message}
             />
           </div>
-          <div className="flex justify-end mt-4">
-            <SubmitButton
+          {!!watch()?.file?.length && (
+            <span className="absolute right-0">
+              {watch().file[0].name}
+              <button
+                onClick={() => resetField('file')}
+                className="ml-4 mr-2 pointer"
+              >
+                x
+              </button>
+            </span>
+          )}
+          <div className="flex justify-end mt-6">
+            <StyledButton
+              ref={submitButtonRef}
+              pending={pending}
               title="Send Message"
               className="bg-purple-300"
+              type="submit"
             />
           </div>
         </form>
+        <FormMessage
+          isSent={isSent}
+          startPosition={buttonPosition}
+          message={message}
+          isVisible={showMessage}
+          onClose={handleCloseMessage}
+        />
       </Container>
     </section>
   );
