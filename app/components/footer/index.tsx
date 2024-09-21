@@ -5,28 +5,40 @@ import {
   LinkedinIcon,
   TwitterIcon,
 } from '@/components/icons';
+import { CONTACT_INFO } from '@/lib/definitions';
+
+const {
+  ADDRESS,
+  ADDRESS_LINK,
+  EMAIL,
+  FACEBOOK_LINK,
+  FORMATTED_PHONE,
+  INSTAGRAM_LINK,
+  PHONE,
+  LINKEDIN_LIMK,
+  TWITTER_LINK,
+} = CONTACT_INFO;
 
 const ContactLinks = [
   {
-    href: ``,
-    title:
-      'Port Maybellmouth,  Montana, 78926 Tia Parkways, 068',
+    href: ADDRESS_LINK,
+    title: ADDRESS,
     target: '_blank',
   },
   {
-    href: `mailto:sba@sba.com`,
-    title: 'sba@sba.com',
+    href: `mailto:${EMAIL}`,
+    title: EMAIL,
     target: '_blank',
   },
   {
-    href: 'tel:+16508805109',
-    title: '+1 650 880 5109',
+    href: `tel:${PHONE}`,
+    title: FORMATTED_PHONE,
     target: '_blank',
   },
 ];
 const SocialMediaLinks = [
   {
-    href: '',
+    href: FACEBOOK_LINK,
     title: (
       <>
         <FacebookIcon className="stroke-white group-hover:stroke-purple-100 group-active:stroke-purple-200" />
@@ -36,7 +48,7 @@ const SocialMediaLinks = [
     target: '_blank',
   },
   {
-    href: '',
+    href: INSTAGRAM_LINK,
     title: (
       <>
         <InstagramIcon className="stroke-white group-hover:stroke-purple-100 group-active:stroke-purple-200" />
@@ -46,7 +58,7 @@ const SocialMediaLinks = [
     target: '_blank',
   },
   {
-    href: '',
+    href: LINKEDIN_LIMK,
     title: (
       <>
         <LinkedinIcon className="stroke-white group-hover:stroke-purple-100 group-active:stroke-purple-200" />
@@ -56,7 +68,7 @@ const SocialMediaLinks = [
     target: '_blank',
   },
   {
-    href: '',
+    href: TWITTER_LINK,
     title: (
       <>
         <TwitterIcon className="stroke-white group-hover:stroke-purple-100 group-active:stroke-purple-200" />
@@ -69,21 +81,21 @@ const SocialMediaLinks = [
 
 export const Footer = () => {
   return (
-    <footer className="py-40 bg-[#195FE1] overflow-hidden">
+    <footer className="py-6 md:py-40 bg-[#195FE1] overflow-hidden">
       <Container>
         <Logo />
-        <div className="grid mt-6 grid-cols-[1fr_2fr]">
-          <div>
-            <div className="absolute top-[-140px] rotate-[-164deg] left-0 w-[375px] h-[610px] rounded-full bg-[#5956E6] blur-[72px]"></div>
+        <div className="grid mt-4 md:mt-6 grid-cols-1 md:grid-cols-[1fr_2fr]">
+          <div className="mb-[49px] md:mb-0">
+            <div className="absolute top-[-140px] rotate-[-164deg] left-40 md:-left-[300px] xl:left-0 w-[375px] h-[610px] rounded-full bg-[#5956E6] blur-[72px]"></div>
             <NavLinks
               screen="desktop"
               className="flex flex-col gap-4 z-[5] relative"
             />
           </div>
           <div className="relative">
-            <div className="absolute top-[-238px] rotate-[-157deg] rounded-full right-0 w-[535px] h-[610px] bg-[#8D6AF4] blur-[150px]"></div>
-            <div className="flex flex-col justify-between h-full z-[5] relative">
-              <div className="flex flex-col gap-4">
+            <div className="absolute hidden md:block top-[-238px] rotate-[-157deg] rounded-full md:-right-40 xl:right-0 w-[535px] h-[610px] bg-[#8D6AF4] blur-[150px]"></div>
+            <div className="flex flex-col gap-4 flex-col-reverse md:justify-between h-full z-[5] relative">
+              <div className="flex flex-col gap-2 md:gap-4">
                 {ContactLinks.map(
                   ({ href, target, title }, i) => {
                     return (
@@ -123,7 +135,7 @@ export const Footer = () => {
             </div>
           </div>
         </div>
-        <div className="text-body5 mt-[89px] mx-auto w-fit z-[5] relative">
+        <div className="text-body5 mt-[26px] md:mt-[89px] mx-auto w-fit z-[5] relative">
           © 2024 NBA Soft IT-Company
         </div>
       </Container>
