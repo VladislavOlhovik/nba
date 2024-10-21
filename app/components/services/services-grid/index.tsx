@@ -242,14 +242,7 @@ export const ServicesGrid = () => {
           }}
           className="rounded-full w-[200px] h-[160px] bg-[#195FE1]"
         ></div>
-        <div
-          style={{
-            WebkitBackdropFilter: 'blur(40px)',
-            backdropFilter: 'blur(40px)',
-            filter: 'blur(40px)',
-          }}
-          className="absolute top-0 left-0 rounded-full w-[120px] h-[120px] bg-[#AE67DA]"
-        ></div>
+        <div className="absolute blur-[40px] top-0 left-0 rounded-full w-[120px] h-[120px] bg-[#AE67DA]"></div>
       </div>
       {developmentDescriptions.map(
         ({ category, overview, technologies, icon }, i) => {
