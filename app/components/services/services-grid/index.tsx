@@ -139,6 +139,7 @@ const developmentDescriptions = [
 export const ServicesGrid = () => {
   const circleRef = useRef<HTMLDivElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
+  const [pos, setPos] = useState({ dX: 0, dY: 0 });
   const [containerRefInfo, setContainerRefInfo] = useState({
     width: 0,
     height: 0,
@@ -214,7 +215,7 @@ export const ServicesGrid = () => {
             yPosition -
             (containerRefInfo.width - circleWidth) * 2;
         }
-        circle.style.transform = `translate(${xPosition}px, ${yPosition}px)`;
+        setPos({ dX: xPosition, dY: yPosition });
       }
     };
     handleScroll();
@@ -228,10 +229,27 @@ export const ServicesGrid = () => {
     <div ref={containerRef} className="relative">
       <div
         ref={circleRef}
+        style={{
+          transform: `translate(${pos.dX}px, ${pos.dY}px)`,
+        }}
         className={`hidden md:block absolute top-0 left-0`}
       >
-        <div className="rounded-full w-[200px] h-[160px] bg-[#195FE1] blur-[40px]"></div>
-        <div className="absolute top-0 left-0 rounded-full w-[120px] h-[120px] bg-[#AE67DA] blur-[40px]"></div>
+        <div
+          style={{
+            WebkitBackdropFilter: 'blur(40px)',
+            backdropFilter: 'blur(40px)',
+            filter: 'blur(40px)',
+          }}
+          className="rounded-full w-[200px] h-[160px] bg-[#195FE1]"
+        ></div>
+        <div
+          style={{
+            WebkitBackdropFilter: 'blur(40px)',
+            backdropFilter: 'blur(40px)',
+            filter: 'blur(40px)',
+          }}
+          className="absolute top-0 left-0 rounded-full w-[120px] h-[120px] bg-[#AE67DA]"
+        ></div>
       </div>
       {developmentDescriptions.map(
         ({ category, overview, technologies, icon }, i) => {

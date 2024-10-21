@@ -40,9 +40,8 @@ export const Portfolio = () => {
         <div className="grid grid-cols-3 gap-1 md:gap-4 xl:gap-8">
           {jobExamples.map(({ imgUrl, url }, i) => {
             return (
-              <a href={url} target="_blank">
+              <a key={i} href={url} target="_blank">
                 <div
-                  key={i}
                   style={{
                     backgroundImage: `url(${imgUrl})`,
                   }}
