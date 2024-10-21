@@ -2,20 +2,20 @@ import { Container } from '@/components';
 
 const jobExamples = [
   {
-    imgUrl: '/example1.png',
-    url: '',
+    imgUrl: '/circlek.png',
+    url: 'https://www.circlek.com/',
   },
   {
-    imgUrl: '/example2.png',
-    url: '',
+    imgUrl: '/flipsidegroup.png',
+    url: 'https://flipsidegroup.com/',
   },
   {
-    imgUrl: '/example3.png',
-    url: '',
+    imgUrl: '/hd.png',
+    url: 'https://www.harley-davidson.com/us/en/index.html',
   },
   {
-    imgUrl: '/example4.png',
-    url: '',
+    imgUrl: '/GoCatch.png',
+    url: 'https://www.gocatch.fish/',
   },
   {
     imgUrl: '/example5.png',
@@ -40,14 +40,16 @@ export const Portfolio = () => {
         <div className="grid grid-cols-3 gap-1 md:gap-4 xl:gap-8">
           {jobExamples.map(({ imgUrl, url }, i) => {
             return (
-              <div
-                key={i}
-                style={{
-                  backgroundImage: `url(${imgUrl})`,
-                }}
-                className={`w-[104px] h-[84px] md:w-[224px] md:h-[194px] xl:w-[314px] xl:h-[322px] rounded-[12px] md:rounded-[20px] bg-cover bg-center
-                  ${(i - 1) % 3 === 0 ? 'relative top-4 md:top-[32px] xl:top-[63px]' : ''}`}
-              ></div>
+              <a href={url} target="_blank">
+                <div
+                  key={i}
+                  style={{
+                    backgroundImage: `url(${imgUrl})`,
+                  }}
+                  className={`w-[104px] h-[84px] md:w-[224px] md:h-[194px] xl:w-[314px] xl:h-[322px] rounded-[12px] md:rounded-[20px] bg-cover bg-center
+                    ${(i - 1) % 3 === 0 ? 'relative top-4 md:top-[32px] xl:top-[63px]' : ''}`}
+                ></div>
+              </a>
             );
           })}
         </div>
