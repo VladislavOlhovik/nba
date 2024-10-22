@@ -137,14 +137,14 @@ const developmentDescriptions = [
 ];
 
 export const ServicesGrid = () => {
-  const circleRef = useRef<HTMLDivElement | null>(null);
+  const circleWidth = 200;
   const containerRef = useRef<HTMLDivElement | null>(null);
-  const [pos, setPos] = useState({ dX: 0, dY: 0 });
-  const [containerRefInfo, setContainerRefInfo] = useState({
+  const [circlePossition, setCirclePossition] = useState({
+    dX: 0,
+    dY: 0,
+  });
+  const [containerInfo, setContainerInfo] = useState({
     width: 0,
-    height: 0,
-    top: 0,
-    left: 0,
     startPosY: 0,
     endPosY: 0,
   });
@@ -154,11 +154,8 @@ export const ServicesGrid = () => {
       if (containerRef.current) {
         const rect =
           containerRef.current.getBoundingClientRect();
-        setContainerRefInfo({
+        setContainerInfo({
           width: rect.width,
-          height: rect.height,
-          top: rect.top + window.scrollY,
-          left: rect.left + window.scrollX,
           startPosY:
             rect.top +
             window.scrollY -
@@ -182,40 +179,34 @@ export const ServicesGrid = () => {
   }, []);
 
   useEffect(() => {
-    const circle = circleRef.current;
-    let xPosition = 0;
-    let yPosition = 0;
+    const amplitude = containerInfo.width / 2;
+    const wavelength = Math.PI / 8;
     const handleScroll = () => {
-      if (!circle) return;
       const scrollY = window.scrollY;
-      const circleWidth = circle.offsetWidth;
       if (
-        scrollY > containerRefInfo.startPosY &&
-        scrollY < containerRefInfo.endPosY
+        scrollY > containerInfo.startPosY &&
+        scrollY < containerInfo.endPosY
       ) {
-        xPosition = scrollY - containerRefInfo.startPosY;
-        yPosition = scrollY - containerRefInfo.startPosY;
-        if (
-          yPosition >=
-          containerRefInfo.width - circleWidth
-        ) {
-          let pos = xPosition;
-          xPosition =
-            containerRefInfo.startPosY -
-            (scrollY -
-              (containerRefInfo.startPosY +
-                containerRefInfo.width -
-                circleWidth));
-        }
-        if (
-          xPosition <= 0 &&
-          yPosition >= containerRefInfo.width - circleWidth
-        ) {
-          xPosition =
-            yPosition -
-            (containerRefInfo.width - circleWidth) * 2;
-        }
-        setPos({ dX: xPosition, dY: yPosition });
+        const yPosition = scrollY - containerInfo.startPosY;
+        const xPosition =
+          containerInfo.width / 2 +
+          (Math.sin(
+            (2 * yPosition * wavelength) / 100 - Math.PI / 2
+          ) > 0
+            ? (amplitude - circleWidth) *
+              Math.sin(
+                (2 * yPosition * wavelength) / 100 -
+                  Math.PI / 2
+              )
+            : amplitude *
+              Math.sin(
+                (2 * yPosition * wavelength) / 100 -
+                  Math.PI / 2
+              ));
+        setCirclePossition({
+          dX: xPosition,
+          dY: yPosition,
+        });
       }
     };
     handleScroll();
@@ -223,24 +214,24 @@ export const ServicesGrid = () => {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [containerRefInfo]);
+  }, [containerInfo]);
 
   return (
     <div ref={containerRef} className="relative">
       <div
-        ref={circleRef}
         style={{
-          transform: `translate(${pos.dX}px, ${pos.dY}px)`,
+          transform: `translate(${circlePossition.dX}px, ${circlePossition.dY}px)`,
         }}
-        className={`hidden md:block absolute top-0 left-0`}
+        className={'absolute top-0 left-0'}
       >
         <div
           style={{
             WebkitBackdropFilter: 'blur(40px)',
             backdropFilter: 'blur(40px)',
             filter: 'blur(40px)',
+            width: `${circleWidth}px`,
           }}
-          className="rounded-full w-[200px] h-[160px] bg-[#195FE1]"
+          className="rounded-full h-[160px] bg-[#195FE1]"
         ></div>
         <div className="absolute blur-[40px] top-0 left-0 rounded-full w-[120px] h-[120px] bg-[#AE67DA]"></div>
       </div>
